@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Electricity Bill Calculator - Nepal</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+   
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      }
+      body, div, h1, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      }
+      h1 {
+      padding: 10px 0;
+      font-size: 28px;
+      font-weight: 300;
+      text-align: center;
+      }
+      p {
+      font-size: 12px;
+      }
+      hr {
+      color: #a9a9a9;
+      opacity: 0.3;
+      }
+      .main-block {
+      max-width: 800px; 
+      min-height: 460px; 
+      padding: 10px 0;
+      margin: auto;
+      border-radius: 5px; 
+      border: solid 1px #ccc;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+      background: #ebebeb; 
+      }
+      form {
+      margin: 0 30px;
+      }
+      input[type=number] {
+      width: calc(100% - 57px);
+      height: 36px;
+      margin: 13px 0 0 -5px;
+      padding-left: 10px; 
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #fff; 
+      }
+     .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      input[type=button] {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px; 
+      border: none;
+      background: #1c87c9; 
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      }
+       input[type=button]:hover {
+      background: #26a9e0;
+      }
+    </style>
+  </head>
+ <body oncontextmenu="return false;">
+    <div class="main-block">
+      <h1>Electricity Bill Calculator - Nepal</h1>
+
+      <form>
+        <hr>
+        <input type="number" id="" placeholder="Load: 5 Amperes" disabled>
+        <hr>
+        
+        <input type="number" id="presrdg" placeholder="Enter Present Meter Reading" required>
+        
+        <input type="number" id="prevrdg" placeholder="Enter Previous Meter Reading" required>
+      
+        <hr>
+        <div class="btn-block">
+         <div id="dispresult"></div>
+         <hr>
+           <input type="button" value="Submit" id="btnSubmit" onclick="calc()">
+        </div>
+
+      </form>
+      <hr>
+       <h1>OR</h1>
+       <hr>
+
+      <form>
+       
+        <input type="number" id="cunits" placeholder="Enter Total Consumed Units" required>
+       
+        <hr>
+        <div class="btn-block">
+         <div id="dispresult1"></div>
+         <hr>
+           <input type="button" value="Submit" id="btnSubmit" onclick="calc1()">
+        </div>
+
+      </form>
+  
+    </div>
+
+
+    <script type="text/javascript">
+      
+
+    function calc()
+    {
+      var prev, pres, total_reading, billamnt;
+      prev=document.getElementById("prevrdg").value;
+      pres=document.getElementById("presrdg").value;
+      
+      total_reading =parseInt(pres)-parseInt(prev);
+
+  if(total_reading == 0){
+    
+    billamnt= 0;
+    
+  }
+  else if(total_reading <= 10){
+    billamnt= 30+total_reading*0;
+  }
+  else if(total_reading <= 20){
+    
+    billamnt= 30+total_reading*3;
+    
+  }
+  else if(total_reading <= 30){
+    
+    billamnt= 110+(total_reading - 20)*6.5;
+    
+  }
+  else if(total_reading <= 50){
+    
+    billamnt= 175+(total_reading - 30)*8;
+    
+  }
+  else if(total_reading <= 100){
+    
+    billamnt= 360+(total_reading - 50)*9.5;
+    
+  }else if(total_reading <= 150){
+    
+    billamnt= 860+(total_reading - 100)*9.5;
+    
+  }else if(total_reading <= 250){
+    
+    billamnt= 1360+(total_reading - 150)*10;
+    
+  }else if(total_reading <= 400){
+    
+    billamnt= 2385+(total_reading - 250)*11;
+    
+  }else if(total_reading >400){
+    
+    billamnt= 4210+(total_reading - 400)*12;
+    
+  }else{
+    billamnt=0;
+  }
+
+
+      var result=" Previous Reading: "+prev+"<br> Present Reading: "+pres+" <br> Total Electricity Consumed: "+total_reading+" Units <br> Total Bill Amount: Rs."+billamnt;
+       document.getElementById("dispresult").innerHTML = result;
+    }
+
+
+
+
+    function calc1()
+    {
+      var  total_reading, billamnt;
+      total_reading=document.getElementById("cunits").value;
+     
+    
+
+  if(total_reading == 0){
+    
+    billamnt= 0;
+    
+  }
+  else if(total_reading <= 10){
+    billamnt= 30+total_reading*0;
+  }
+  else if(total_reading <= 20){
+    
+    billamnt= 30+total_reading*3;
+    
+  }
+  else if(total_reading <= 30){
+    
+    billamnt= 110+(total_reading - 20)*6.5;
+    
+  }
+  else if(total_reading <= 50){
+    
+    billamnt= 175+(total_reading - 30)*8;
+    
+  }
+  else if(total_reading <= 100){
+    
+    billamnt= 360+(total_reading - 50)*9.5;
+    
+  }else if(total_reading <= 150){
+    
+    billamnt= 860+(total_reading - 100)*9.5;
+    
+  }else if(total_reading <= 250){
+    
+    billamnt= 1360+(total_reading - 150)*10;
+    
+  }else if(total_reading <= 400){
+    
+    billamnt= 2385+(total_reading - 250)*11;
+    
+  }else if(total_reading >400){
+    
+    billamnt= 4210+(total_reading - 400)*12;
+    
+  }else{
+    billamnt=0;
+  }
+
+
+      var result1="Total Electricity Consumed: "+total_reading+" Units <br> Total Bill Amount: Rs."+billamnt;
+       document.getElementById("dispresult1").innerHTML = result1;
+    }
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+document.onkeydown = function(e) {
+if(event.keyCode == 123) {
+return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+return false;
+}
+if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+return false;
+}
+}
+    </script>
+
+  </body>
+</html>
